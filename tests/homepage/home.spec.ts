@@ -41,7 +41,7 @@ test.describe("Home page with no auth", () => {
   });
 });
 
-test.describe("Home page customer 01 auth", () => {
+test.describe("Home page customer 02 auth", () => {
   test.use({ storageState: ".auth/customer01.json" });
   test.beforeEach(async ({ page }) => {
     await page.goto("https://practicesoftwaretesting.com/");
@@ -51,14 +51,14 @@ test.describe("Home page customer 01 auth", () => {
     await page.waitForLoadState("networkidle");
     headless
       ? await test.step("visual test", async () => {
-          await expect(page).toHaveScreenshot("home-page-customer01.png", {
+          await expect(page).toHaveScreenshot("home-page-customer02.png", {
             mask: [page.getByTitle("Practice Software Testing - Toolshop")],
           });
         })
       : console.log("Running in Headed mode, no screenshot comparison");
   });
-  test("check customer 01 is signed in", async ({ page }) => {
+  test("check customer 02 is signed in", async ({ page }) => {
     await expect(page.getByTestId("nav-sign-in")).not.toBeVisible();
-    await expect(page.getByTestId("nav-menu")).toContainText("Jane Doe");
+    await expect(page.getByTestId("nav-menu")).toContainText("Jack Howe");
   });
 });
